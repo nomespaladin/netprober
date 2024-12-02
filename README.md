@@ -51,4 +51,29 @@ One `subdomain.txt` wordlist  included inside:
 netprober/wordlists/subdomains.txt
 ```
 
+## Example Overview
+```
+╔════════════════════════════════════════════════════════════╗
+║_____   __    _____________             ______              ║
+║___  | / /______  /___  __ \_______________  /______________║
+║__   |/ /_  _ \  __/_  /_/ /_  ___/  __ \_  __ \  _ \_  ___/║
+║_  /|  / /  __/ /_ _  ____/_  /   / /_/ /  /_/ /  __/  /    ║
+║/_/ |_/  \___/\__/ /_/     /_/    \____//_.___/\___//_/     ║
+╚════════════════════════════════════════════════════════════╝
+                                              By: NomesPaladin
 
+
+Enter Wordlist full path:/home/admin/GitHub/netprober/wordlists/subdomains.txt
+Enter domain:google.com
+Program will proceed and will create a 'txt' file at your Desktop with the results.
+Program Started [02/12/2024 17:06:54]
+SUBDOMAIN FOUND >>> http://mail.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://m.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://mobile.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://calendar.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://apps.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://files.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://tv.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://jobs.example.com  ---------- Status : 200 
+SUBDOMAIN FOUND >>> http://meet.example.com  ---------- Status : 200 
+```
