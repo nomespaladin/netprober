@@ -1,11 +1,10 @@
 #import necessary modules
-
+#import necessary modules
 import requests
 import time
 import os
 import datetime
-
-
+import argparse  # Import argparse for command-line argument parsing
 
 print("""
 
@@ -22,19 +21,22 @@ print("""
 
 """)
 
-#user inputs 
-w_path = input("Enter Wordlist full path:")
-domain = input("Enter domain:")
-#get username of system and create a full path to user's desktop
+# Set up argument parser
+parser = argparse.ArgumentParser(description='Subdomain Finder')
+parser.add_argument('w_path', type=str, help='Full path to the wordlist file')
+parser.add_argument('domain', type=str, help='Domain to search for subdomains')
+
+args = parser.parse_args()  # Parse the command-line arguments
+
+# Get username of system and create a full path to user's desktop
 user_path = os.getlogin()
 desktop_path = f"/home/{user_path}/Desktop"
 
-
-#function to process the words in the wordlist file given by user
+# Function to process the words in the wordlist file given by user
 def read_wordlist(w_path):
     subdomains_list = []
     try:
-        with open(w_path,"r") as file:
+        with open(w_path, "r") as file:
             for subdomain in file:
                 subdomain = subdomain.strip()
                 subdomains_list.append(subdomain)
@@ -43,39 +45,33 @@ def read_wordlist(w_path):
         pass
     return subdomains_list
 
-content = read_wordlist(w_path)
+content = read_wordlist(args.w_path)  # Use the argument for wordlist path
 
-
-now = datetime.datetime.now()#gets actual datetime
+now = datetime.datetime.now()  # Gets actual datetime
 
 time.sleep(2)
 print("Program will proceed and will create a 'txt' file at your Desktop with the results.")
 time.sleep(0.5)
-print(f"Program Started [{(now.strftime("%d/%m/%Y %H:%M:%S"))}]")#prints the readable format of actual datetime
+print(f"Program Started [{(now.strftime('%d/%m/%Y %H:%M:%S'))}]")  # Prints the readable format of actual datetime
 time.sleep(0.5)
 
-#main funtion to process the values on the worlists and save them on a file at the desktop if they exist
-def subdomain_finder(content, domain,desktop_path):
+# Main function to process the values on the wordlists and save them on a file at the desktop if they exist
+def subdomain_finder(content, domain, desktop_path):
     os.chdir(desktop_path)
-   
-    
+
     for cont in content:
-            #time.sleep(0.001)
-            url = f"http://{cont}.{domain}"
-            try:
-                response = requests.get(url, timeout=0.1)  # Set a timeout for requests
-                response.raise_for_status()  # Raise an exception for error HTTP statuses
-                print(f"SUBDOMAIN FOUND >>> {url}  ---------- Status : {response.status_code} ")
+        url = f"http://{cont}.{domain}"
+        try:
+            response = requests.get(url, timeout=0.1)  # Set a timeout for requests
+            response.raise_for_status()  # Raise an exception for error HTTP statuses
+            print(f"SUBDOMAIN FOUND >>> {url}  ---------- Status : {response.status_code} ")
 
-                with open(f'results_{domain}','a') as file:
-                    file.write(f"SUBDOMAIN FOUND >>> {url}\n")
-            except requests.exceptions.RequestException as e:
-                #print(f"ERROR FETCHING >>> {url}")
-                pass
-                # You might want to log the error or take other actions here
-                continue
-                    
+            with open(f'results_{domain}.txt', 'a') as file:  # Ensure the file has a .txt extension
+                file.write(f"SUBDOMAIN FOUND >>> {url}\n")
+        except requests.exceptions.RequestException as e:
+            pass  # You might want to log the error or take other actions here
+            continue
 
-subdomain_finder(content,domain,desktop_path)
+subdomain_finder(content, args.domain, desktop_path)  # Use the argument for domain
 
 
