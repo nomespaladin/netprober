@@ -34,7 +34,7 @@ Saves the result of discovery directly in user's Desktop as "results_domain.txt"
 
 Run the script and enter a domain when prompted:
 ```sh
-python netprober.py /path/to/wordlist.txt example.com
+python netprober.py -w /path/to/wordlist.txt -d example.com
 ```
 Example of "wordlist" path ":
 ```
