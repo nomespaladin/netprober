@@ -34,7 +34,7 @@ Saves the result of discovery directly in user's Desktop as "results_domain.txt"
 
 Run the script and enter a domain when prompted:
 ```sh
-python netprober.py
+python netprober.py /path/to/wordlist.txt example.com
 ```
 Example of "wordlist" path ":
 ```
@@ -60,7 +60,7 @@ netprober/wordlists/subdomains.txt
 ║_  /|  / /  __/ /_ _  ____/_  /   / /_/ /  /_/ /  __/  /    ║
 ║/_/ |_/  \___/\__/ /_/     /_/    \____//_.___/\___//_/     ║
 ╚════════════════════════════════════════════════════════════╝
-                                              By: NomesPaladin
+ version 2                                    By: NomesPaladin
 
 
 Enter Wordlist full path:/home/admin/GitHub/netprober/wordlists/subdomains.txt
