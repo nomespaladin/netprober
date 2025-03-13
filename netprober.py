@@ -1,5 +1,4 @@
 #import necessary modules
-#import necessary modules
 import requests
 import time
 import os
@@ -17,14 +16,14 @@ print("""
 ║_  /|  / /  __/ /_ _  ____/_  /   / /_/ /  /_/ /  __/  /    ║
 ║/_/ |_/  \___/\__/ /_/     /_/    \____//_.___/\___//_/     ║
 ╚════════════════════════════════════════════════════════════╝
- version 2                                    By: NomesPaladin
+                                              By: NomesPaladin
 
 """)
 
-# Set up argument parser
-parser = argparse.ArgumentParser(description='Subdomain Finder')
-parser.add_argument('w_path', type=str, help='Full path to the wordlist file')
-parser.add_argument('domain', type=str, help='Domain to search for subdomains')
+# Set up argument parser with flags
+parser = argparse.ArgumentParser(description='Subdomain Finder - A tool to discover subdomains using a wordlist.')
+parser.add_argument('-w', '--wordlist', type=str, required=True, help='Full path to the wordlist file containing subdomain names (one per line).')
+parser.add_argument('-d', '--domain', type=str, required=True, help='Domain to search for subdomains (e.g., example.com).')
 
 args = parser.parse_args()  # Parse the command-line arguments
 
@@ -45,7 +44,7 @@ def read_wordlist(w_path):
         pass
     return subdomains_list
 
-content = read_wordlist(args.w_path)  # Use the argument for wordlist path
+content = read_wordlist(args.wordlist)  # Use the argument for wordlist path
 
 now = datetime.datetime.now()  # Gets actual datetime
 
@@ -73,5 +72,3 @@ def subdomain_finder(content, domain, desktop_path):
             continue
 
 subdomain_finder(content, args.domain, desktop_path)  # Use the argument for domain
-
-
